@@ -1,0 +1,7 @@
+(require :asdf)
+(asdf:load-system "string-case")
+(defun egcl-dispatch (s) (string-case:string-case (s :default :unknown) ("alpha" :a) ("beta" :b)))
+(assert (eq :a (egcl-dispatch (copy-seq "alpha"))))
+(assert (eq :b (egcl-dispatch "beta")))
+(assert (eq :unknown (egcl-dispatch "gamma")))
+(format t "EGCL string-case smoke passed.~%")
